@@ -1,12 +1,19 @@
 import Vue from 'vue'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
 import App from './App.vue'
+import './styles.less'
 
-const options = {
-    render: h => h(App),
+
+const __main__ = () => {
+    Vue.use(ElementUI)
+    Vue.config.productionTip = false
+    
+    new Vue({
+        el: '#app',
+        render: h => h(App),
+    })
 }
-const app = new Vue(options)
 
-app.$mount('#app')
-
-Vue.config.productionTip = false
+__main__()
