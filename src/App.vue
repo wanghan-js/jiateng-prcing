@@ -1,86 +1,163 @@
 <template>
-    <el-container class="app">
-        <el-aside>
-            <el-menu>
-                <el-menu-item index="1">
-                    <i class="el-icon-location"></i>
-                    <span slot="title">导航一</span>
-                </el-menu-item>
-                <el-menu-item index="2">
-                    <i class="el-icon-menu"></i>
-                    <span slot="title">导航二</span>
-                </el-menu-item>
-                <el-menu-item index="3">
-                    <i class="el-icon-document"></i>
-                    <span slot="title">导航三</span>
-                </el-menu-item>
-                <el-menu-item index="4">
-                    <i class="el-icon-setting"></i>
-                    <span slot="title">导航四</span>
-                </el-menu-item>
-            </el-menu>
-        </el-aside>
+    <div class="app">
+        <el-form class="left" label-width="100px">
+            <el-form-item label="印刷机类型">
+                <el-select v-model="machine" placeholder="请选择">
+                    <el-option label="彩印4色机" value="4"></el-option>
+                    <el-option label="彩印6色机" value="6"></el-option>
+                </el-select>
+            </el-form-item>
 
-        <el-main>
-            <el-form ref="form" :model="form" label-width="100px">
-                <el-form-item label="活动名称">
-                    <el-input class="el-input" v-model="form.name"></el-input>
-                </el-form-item>
+            <el-form-item label="数量">
+                <el-input
+                    class="el-input"
+                    type="number"
+                    v-model="quantity"
+                    clearable
+                    placeholder="请输入"
+                ></el-input>
+            </el-form-item>
 
-                <el-form-item label="印刷机类型">
-                    <el-select v-model="form.machine" placeholder="请选择印刷机类型">
-                        <el-option label="单色机" value="1"></el-option>
-                        <el-option label="双色机" value="2"></el-option>
-                        <el-option label="四色机" value="4"></el-option>
-                        <el-option label="六色机" value="6"></el-option>
-                    </el-select>
-                </el-form-item>
+            <el-form-item label="刀模费">
+                <el-input
+                    class="el-input"
+                    type="number"
+                    v-model="daomoPrice"
+                    clearable
+                    placeholder="请输入"
+                ></el-input>
+            </el-form-item>
 
-                <el-form-item label="产品数量">
-                    <el-select v-model="form.quantity" placeholder="请选择产品数量范围">
-                        <el-option label="1000印张以内" value="400"></el-option>
-                        <el-option label="1000印张以内" value="400"></el-option>
-                    </el-select>
-                </el-form-item>
+            <el-form-item label="印刷次数">
+                <el-input
+                    class="el-input"
+                    type="number"
+                    v-model="printTimes"
+                    clearable
+                    placeholder="请输入"
+                ></el-input>
+            </el-form-item>
 
-                <el-form-item label="活动区域">
-                    <el-select v-model="form.region" placeholder="请选择活动区域">
-                        <el-option label="区域一" value="shanghai"></el-option>
-                        <el-option label="区域二" value="beijing"></el-option>
-                    </el-select>
-                </el-form-item>
+            <el-form-item label="车次费用">
+                <el-input
+                    class="el-input"
+                    type="number"
+                    v-model="checiPrice"
+                    clearable
+                    placeholder="请输入"
+                ></el-input>
+            </el-form-item>
 
-                <el-form-item label="即时配送">
-                    <el-switch v-model="form.delivery"></el-switch>
-                </el-form-item>
+            <el-form-item label="普色版">
+                <el-input
+                    class="el-input"
+                    type="number"
+                    v-model="pusebanCount"
+                    clearable
+                    placeholder="请输入"
+                ></el-input>
+            </el-form-item>
 
-                <el-form-item label="活动性质">
-                    <el-checkbox-group v-model="form.type">
-                        <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>
-                        <el-checkbox label="地推活动" name="type"></el-checkbox>
-                        <el-checkbox label="线下主题活动" name="type"></el-checkbox>
-                        <el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>
-                    </el-checkbox-group>
-                </el-form-item>
+            <el-form-item label="专色版">
+                <el-input
+                    class="el-input"
+                    type="number"
+                    v-model="zhuansebanCount"
+                    clearable
+                    placeholder="请输入"
+                ></el-input>
+            </el-form-item>
 
-                <el-form-item label="特殊资源">
-                    <el-radio-group v-model="form.resource">
-                        <el-radio label="线上品牌商赞助"></el-radio>
-                        <el-radio label="线下场地免费"></el-radio>
-                    </el-radio-group>
-                </el-form-item>
+            <el-form-item label="材料单价">
+                <el-input
+                    class="el-input"
+                    type="number"
+                    v-model="materialPrice"
+                    clearable
+                    placeholder="请输入"
+                ></el-input>
+            </el-form-item>
 
-                <el-form-item label="活动形式">
-                    <el-input type="textarea" v-model="form.desc"></el-input>
-                </el-form-item>
+            <el-form-item label="开数">
+                <el-input
+                    class="el-input"
+                    type="number"
+                    v-model="kaishu"
+                    clearable
+                    placeholder="请输入"
+                ></el-input>
+            </el-form-item>
 
-                <el-form-item>
-                    <el-button type="primary" @click="onSubmit">立即创建</el-button>
-                    <el-button>取消</el-button>
-                </el-form-item>
-            </el-form>
-        </el-main>
-    </el-container>
+            <el-form-item label="模数">
+                <el-input
+                    class="el-input"
+                    type="number"
+                    v-model="moshu"
+                    clearable
+                    placeholder="请输入"
+                ></el-input>
+            </el-form-item>
+
+            <el-form-item label="利润率">
+                <el-input
+                    class="el-input"
+                    type="number"
+                    v-model="profit"
+                    clearable
+                    placeholder="请输入"
+                ></el-input>
+            </el-form-item>
+        </el-form>
+
+        <el-form class="right" label-width="100px">
+            <el-form-item label="需要张数">
+                <el-input
+                    disabled
+                    class="el-input"
+                    type="number"
+                    :value="zhangshu"
+                ></el-input>
+            </el-form-item>
+
+            <el-form-item label="放损">
+                <el-input
+                    disabled
+                    class="el-input"
+                    type="number"
+                    :value="fangsun"
+                ></el-input>
+            </el-form-item>
+
+            <el-form-item label="生产张数">
+                <el-input
+                    disabled
+                    class="el-input"
+                    type="number"
+                    :value="productionZhangshu"
+                ></el-input>
+            </el-form-item>
+
+            <el-form-item label="材料金额">
+                <el-input
+                    disabled
+                    class="el-input"
+                    type="number"
+                    :value="materialAmount"
+                ></el-input>
+            </el-form-item>
+
+            <el-form-item label="印刷费用">
+                <el-input
+                    disabled
+                    class="el-input"
+                    type="number"
+                    :value="printAmount"
+                ></el-input>
+            </el-form-item>
+        </el-form>
+
+        <div class="bottom"></div>
+    </div>
 </template>
 
 <script>
@@ -89,39 +166,75 @@ export default {
 
     data() {
         return {
-            form: {
-                name: '',
-                machine: '',
-                quantity: 0,
-                region: '',
-                delivery: false,
-                type: [],
-                resource: '',
-                desc: '',
-            },
+            machine: '',
+            quantity: '',
+            daomoPrice: '',
+            printTimes: '',
+            checiPrice: '',
+            pusebanCount: '',
+            zhuansebanCount: '',
+            materialPrice: '',
+            kaishu: '',
+            moshu: '',
+            profit: '',
         }
     },
 
+    computed: {
+        zhangshu() {
+            if (this.quantity && this.moshu) {
+                return Math.ceil(this.quantity / this.moshu)
+            } else {
+                return ''
+            }
+        },
+
+        fangsun() {
+            return Math.ceil(30 + 30 * this.pusebanCount + 60 * this.zhuansebanCount + this.zhangshu * 0.02)
+        },
+
+        productionZhangshu() {
+            return this.zhangshu + this.fangsun
+        },
+
+        materialAmount() {
+            return (this.materialPrice * (this.productionZhangshu / this.kaishu)).toFixed(2)
+        },
+
+        printAmount() {
+            return (this.pusebanCount * 50 + this.zhuansebanCount * 75 + this.productionZhangshu * this.checiPrice * this.printTimes).toFixed(2)
+        },
+    },
+
     watch: {
-        form(data) {
-            console.log(data)
-        },
     },
 
-    methods: {
-        onSubmit() {
-            console.log('submit!')
-        },
-    },
+    methods: {},
 
-    created() {
-    },
+    created() {},
 }
 </script>
 
 <style lang="less" scoped>
 .app {
-    // height: 100%;
+    box-sizing: border-box;
+    padding-top: 20px;
+    height: 100%;
+    overflow: hidden;
+    .left {
+        float: left;
+        width: 50%;
+        height: 90%;
+    }
+    .right {
+        float: right;
+        width: 50%;
+        height: 90%
+    }
+    .bottom {
+        clear: both;
+        height: 10%;
+    }
     .el-input {
         width: 221px;
     }
